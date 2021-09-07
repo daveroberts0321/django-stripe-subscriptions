@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'subscriptions.apps.SubscriptionsConfig',
+    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +82,7 @@ WSGI_APPLICATION = 'djangostripe.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
     }
 }
 
@@ -125,10 +126,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [Path(BASE_DIR).joinpath('static')]
 
-STRIPE_PUBLISHABLE_KEY = '<your test publishable key here>'
-STRIPE_SECRET_KEY = '<your test secret key here>'
-STRIPE_PRICE_ID = '<your price api id here>'
-STRIPE_ENDPOINT_SECRET = '<your endpoint secret here>'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51JX6fBIWMNdufdbSs67uMRrKZz0GwZDlwHBZloBDRo2Zk8Gu4QOC0nKzA6LtozHPKETbsHntJyJxujAh6w8C5KNs007rfVILqb'
+STRIPE_SECRET_KEY = 'sk_test_51JX6fBIWMNdufdbS4adfJRUKfTs06tb0YjhyBagkvnlksY30iYHqU2nG7Rdb8nQymRgshMWHOEzhQxn26L3vcX0Y00jISGawm2'
+STRIPE_PRICE_ID = 'price_1JX6hPIWMNdufdbShYk7ziwZ'
+STRIPE_ENDPOINT_SECRET = 'whsec_TpgiUU5CkVNU7CBNO3j7vv3GtixgWFhT'
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
